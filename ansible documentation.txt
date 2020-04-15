@@ -1,0 +1,31 @@
+Ansible installation on EC2 inatance
+first we need to launch 2 instances :one is for master another for node manchine
+*****MASTER MANCHINE******
+1 sudo yum-config-manager --enable epel
+2 yum repolist
+3yum install ansible -y
+4 we need to go root [then cd .ssh] enter
+5 here we need to generate the key [ssh-keygen]
+6 the key has been saved in id_rsa.pub
+7 open the key [cat id_rsa.pub]
+8 copy the key and in client side under[vi authorized keys]
+9 cd /etc/ansible
+10 we need go to vi hosts [enter node/client public ip]
+11 you will get the error like "public key denied" 
+12 changes are done in sshd
+13 run the commands [ansible -m ping all]
+
+to run play book
+we need to write[ vi http-playbook.yml]
+to check[ansible-playbook (playbookname)]
+
+
+******client/node/slave******
+1 we need to go root[cd .ssh]
+2 vi authorized keys
+3 paste the master key in that
+4 save & exit
+ public key denied in client side
+****make the changes in sshd config******
+5 restart the sshd [service sshd restart]
+6 then go to master side 
